@@ -9,6 +9,8 @@ import { setupValidationPipes } from '@app/pipes';
 
 import { name } from '../package.json';
 import { AppModule } from './app.module';
+import { HttpExceptionFilter } from '@app/filters';
+import { LoggingInterceptor } from '@app/interceptors';
 
 async function initApplication(app: INestApplication): Promise<void> {
   app.enableCors();
@@ -17,6 +19,10 @@ async function initApplication(app: INestApplication): Promise<void> {
   app.use(helmet());
 
   setupValidationPipes(app);
+
+  app.useGlobalFilters(new HttpExceptionFilter());
+
+  app.useGlobalInterceptors(new LoggingInterceptor());
 
   const { keepAliveTimeout } = loadAppConfig();
 
