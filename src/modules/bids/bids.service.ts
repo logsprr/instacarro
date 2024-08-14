@@ -1,8 +1,9 @@
 import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Bid, bidCollectionName } from '@app/schemas';
+import { Bid } from '@app/schemas';
 import { IBid } from '@app/interfaces';
+import { bidCollectionName } from '@app/modules/schemas';
 
 @Injectable()
 export class BidsService {

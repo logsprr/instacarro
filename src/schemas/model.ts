@@ -1,11 +1,8 @@
+import { brandCollectionName, modelCollectionName, userCollectionName } from '@app/modules/schemas';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument, Types } from 'mongoose';
-import { brandCollectionName } from './brand';
-import { userCollectionName } from './user';
 
 export type ModelDocument = HydratedDocument<Model>;
-
-export const modelCollectionName = 'models';
 
 @Schema({ collection: modelCollectionName })
 export class Model {

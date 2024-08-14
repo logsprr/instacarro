@@ -1,8 +1,9 @@
 import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Brand, brandCollectionName } from '@app/schemas';
+import { Brand } from '@app/schemas';
 import { IBrand } from '@app/interfaces';
+import { brandCollectionName } from '@app/modules/schemas';
 
 @Injectable()
 export class BrandsService {

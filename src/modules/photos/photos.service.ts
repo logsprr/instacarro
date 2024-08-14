@@ -1,8 +1,9 @@
 import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Photo, photoCollectionName } from '@app/schemas';
+import { Photo } from '@app/schemas';
 import { IPhoto } from '@app/interfaces';
+import { photoCollectionName } from '@app/modules/schemas';
 
 @Injectable()
 export class PhotosService {

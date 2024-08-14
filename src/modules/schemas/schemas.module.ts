@@ -1,4 +1,4 @@
-import { UserSchema, userCollectionName } from '@app/schemas/user';
+import { UserSchema } from '@app/schemas/user';
 import { Global, Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 
@@ -11,13 +11,16 @@ import {
   CarSchema,
   ModelSchema,
   PhotoSchema,
+} from '@app/schemas';
+import {
   auctionCollectionName,
   bidCollectionName,
   brandCollectionName,
   carCollectionName,
   modelCollectionName,
   photoCollectionName,
-} from '@app/schemas';
+  userCollectionName,
+} from './collections';
 
 @Global()
 @Module({

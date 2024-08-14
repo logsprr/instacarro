@@ -1,8 +1,9 @@
 import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Auction, auctionCollectionName } from '@app/schemas';
+import { Auction } from '@app/schemas';
 import { IAuction } from '@app/interfaces';
+import { auctionCollectionName } from '@app/modules/schemas';
 
 @Injectable()
 export class AuctionsService {

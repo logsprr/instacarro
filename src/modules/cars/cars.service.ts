@@ -1,8 +1,9 @@
 import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Car, carCollectionName } from '@app/schemas';
+import { Car } from '@app/schemas';
 import { ICar } from '@app/interfaces';
+import { carCollectionName } from '@app/modules/schemas';
 
 @Injectable()
 export class CarsService {

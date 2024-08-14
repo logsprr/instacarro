@@ -2,7 +2,8 @@ import { Model as MongooseModel } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { IModel } from '@app/interfaces';
-import { Model, modelCollectionName } from '@app/schemas';
+import { Model } from '@app/schemas';
+import { modelCollectionName } from '@app/modules/schemas';
 
 @Injectable()
 export class ModelsService {

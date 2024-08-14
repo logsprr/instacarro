@@ -2,13 +2,10 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument, Types } from 'mongoose';
 import { Photo, PhotoSchema } from './photo';
 import { Bid, BidSchema } from './bid';
-import { modelCollectionName } from './model';
-import { userCollectionName } from './user';
 import { Auction, AuctionSchema } from './auction';
+import { carCollectionName, modelCollectionName, userCollectionName } from '@app/modules/schemas';
 
 export type CarDocument = HydratedDocument<Car>;
-
-export const carCollectionName = 'cars';
 
 @Schema({ collection: carCollectionName })
 export class Car {
