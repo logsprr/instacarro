@@ -1,10 +1,16 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument, Types } from 'mongoose';
-import { auctionCollectionName, carCollectionName, userCollectionName } from '@app/modules/schemas';
+import {
+  auctionCollectionName,
+  bidCollectionName,
+  carCollectionName,
+  userCollectionName,
+} from '@app/modules/schemas';
+import { Bid } from './bid';
 
 export type AuctionDocument = HydratedDocument<Auction>;
 
-@Schema({ collection: auctionCollectionName })
+@Schema({ collection: auctionCollectionName, toJSON: { virtuals: true, getters: true } })
 export class Auction {
   @Prop({ required: true })
   minPrice: number;
@@ -12,8 +18,8 @@ export class Auction {
   @Prop({ required: true })
   startDate: Date;
 
-  @Prop({ required: true })
-  endDate: Date;
+  @Prop()
+  endDate?: Date;
 
   @Prop({ required: true })
   lot: number;
@@ -26,6 +32,19 @@ export class Auction {
 
   @Prop({ type: Types.ObjectId, ref: carCollectionName, required: true })
   car: Types.ObjectId;
+
+  @Prop({ type: Types.ObjectId, ref: bidCollectionName })
+  bidWinner?: Types.ObjectId;
+
+  bids?: Bid[];
 }
 
-export const AuctionSchema = SchemaFactory.createForClass(Auction);
+const AuctionSchema = SchemaFactory.createForClass(Auction);
+
+AuctionSchema.virtual('bids', {
+  localField: '_id',
+  foreignField: 'auction',
+  ref: bidCollectionName,
+});
+
+export { AuctionSchema };

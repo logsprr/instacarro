@@ -3,7 +3,6 @@ import { IModel } from './model';
 import { IUser } from './user';
 import { IPhoto } from './photo';
 import { IAuction } from './auction';
-import { IBid } from './bid';
 
 export interface ICar {
   color: string;
@@ -15,5 +14,4 @@ export interface ICar {
   user: Types.ObjectId | IUser;
   photo?: IPhoto;
   auction?: IAuction;
-  bids?: IBid[];
 }

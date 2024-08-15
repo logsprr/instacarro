@@ -9,8 +9,7 @@ import { setupValidationPipes } from '@app/pipes';
 
 import { name } from '../package.json';
 import { AppModule } from './app.module';
-import { HttpExceptionFilter } from '@app/filters';
-import { LoggingInterceptor } from '@app/interceptors';
+import { HandlerInterceptor } from '@app/interceptors';
 import { setupSwagger } from './docs';
 
 async function initApplication(app: INestApplication): Promise<void> {
@@ -21,9 +20,7 @@ async function initApplication(app: INestApplication): Promise<void> {
 
   setupValidationPipes(app);
 
-  app.useGlobalFilters(new HttpExceptionFilter());
-
-  app.useGlobalInterceptors(new LoggingInterceptor());
+  app.useGlobalInterceptors(new HandlerInterceptor());
 
   const { keepAliveTimeout } = loadAppConfig();
 

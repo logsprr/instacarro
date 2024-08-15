@@ -4,6 +4,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Brand } from '@app/schemas';
 import { IBrand } from '@app/interfaces';
 import { brandCollectionName } from '@app/modules/schemas';
+import { findOrThrow } from '@app/util';
 
 @Injectable()
 export class BrandsService {
@@ -14,11 +15,15 @@ export class BrandsService {
   }
 
   async update(id: string, values: Partial<IBrand>): Promise<IBrand> {
-    return await this.brandModel.findByIdAndUpdate(id, values, { new: true });
+    const brand = await findOrThrow(id, () => this.brandModel.findById(id));
+
+    Object.assign(brand, values);
+
+    return await brand.save();
   }
 
   async findById(id: string): Promise<IBrand> {
-    return await this.brandModel.findById(id);
+    return await findOrThrow(id, () => this.brandModel.findById(id));
   }
 
   async findAll(): Promise<IBrand[]> {

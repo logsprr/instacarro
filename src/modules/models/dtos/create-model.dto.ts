@@ -1,4 +1,4 @@
-import { ToObjectId } from '@app/util/dto';
+import { ToObjectId } from '@app/util';
 import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import { Types } from 'mongoose';
 

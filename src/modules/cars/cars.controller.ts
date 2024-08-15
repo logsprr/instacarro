@@ -21,11 +21,6 @@ export class CarsController {
     return this.carsService.findAll();
   }
 
-  @Get(':id/bids')
-  async findBids(@Param('id') id: string) {
-    return this.carsService.findBidsById(id);
-  }
-
   @Get(':id')
   async findOne(@Param('id') id: string) {
     return this.carsService.findById(id);

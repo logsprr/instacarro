@@ -2,14 +2,14 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument, Types } from 'mongoose';
 import {
   auctionCollectionName,
-  bidCollectionName,
   carCollectionName,
   modelCollectionName,
   photoCollectionName,
   userCollectionName,
 } from '@app/modules/schemas';
-import { IBid } from '@app/interfaces';
 import { ObjectId } from 'mongodb';
+import { Photo } from './photo';
+import { Auction } from './auction';
 
 export type CarDocument = HydratedDocument<Car>;
 
@@ -21,7 +21,7 @@ export class Car {
   @Prop({ required: true })
   color: string;
 
-  @Prop({ required: true })
+  @Prop({ required: true, unique: true })
   licensePlate: string;
 
   @Prop({ required: true })
@@ -39,7 +39,9 @@ export class Car {
   @Prop({ type: Types.ObjectId, ref: userCollectionName, required: true })
   user: ObjectId;
 
-  bids?: IBid[];
+  photo?: Photo;
+
+  auctions?: Auction[];
 }
 
 const CarSchema = SchemaFactory.createForClass(Car);
@@ -50,16 +52,10 @@ CarSchema.virtual('photo', {
   ref: photoCollectionName,
 });
 
-CarSchema.virtual('auction', {
+CarSchema.virtual('auctions', {
   localField: '_id',
   foreignField: 'car',
   ref: auctionCollectionName,
-});
-
-CarSchema.virtual('bids', {
-  localField: '_id',
-  foreignField: 'car',
-  ref: bidCollectionName,
 });
 
 export { CarSchema };

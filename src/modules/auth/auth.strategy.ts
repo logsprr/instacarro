@@ -17,7 +17,7 @@ export class AuthBasicStrategy extends PassportStrategy(Strategy, 'auth-basic') 
     const isValidToken = this.authService.checkToken(request.headers.authorization as string);
 
     if (!isValidToken) {
-      this.log.error('Token is not valid for the url %s!', request.url);
+      this.log.error('Token is not valid for the url %s', request.url);
       throw new UnauthorizedException('Token is not valid to access the server');
     }
 

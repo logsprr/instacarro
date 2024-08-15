@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Param, Patch, Post, UseGuards } from '@nestjs/common';
 import { AuctionsService } from './auctions.service';
-import { CreateAuctionDto, UpdateAuctionDto } from './dtos';
+import { CloseAuctionDto, CreateAuctionDto, UpdateAuctionDto } from './dtos';
 import { IAuction } from '@app/interfaces';
 import { ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
@@ -21,9 +21,19 @@ export class AuctionsController {
     return this.auctionsService.findAll();
   }
 
+  @Get('by-car/:carId/bids')
+  async findBids(@Param('carId') carId: string) {
+    return this.auctionsService.findAuctionByCarId(carId);
+  }
+
   @Get(':id')
   async findOne(@Param('id') id: string) {
     return this.auctionsService.findById(id);
+  }
+
+  @Patch(':id/close')
+  async close(@Param('id') id: string, @Body() data: CloseAuctionDto) {
+    return this.auctionsService.close(id, data);
   }
 
   @Patch(':id')

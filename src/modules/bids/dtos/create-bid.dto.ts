@@ -1,4 +1,4 @@
-import { ToObjectId } from '@app/util/dto';
+import { ToObjectId } from '@app/util';
 import { IsNotEmpty, IsNumber } from 'class-validator';
 import { Types } from 'mongoose';
 
@@ -13,5 +13,5 @@ export class CreateBidDto {
 
   @IsNotEmpty()
   @ToObjectId()
-  car: Types.ObjectId;
+  auction: Types.ObjectId;
 }

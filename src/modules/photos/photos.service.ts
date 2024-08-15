@@ -4,6 +4,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Photo } from '@app/schemas';
 import { IPhoto } from '@app/interfaces';
 import { photoCollectionName } from '@app/modules/schemas';
+import { findOrThrow } from '@app/util';
 
 @Injectable()
 export class PhotosService {
@@ -14,11 +15,15 @@ export class PhotosService {
   }
 
   async update(id: string, values: Partial<IPhoto>): Promise<IPhoto> {
-    return await this.photoModel.findByIdAndUpdate(id, values, { new: true });
+    const photo = await findOrThrow(id, () => this.photoModel.findById(id));
+
+    Object.assign(photo, values);
+
+    return await photo.save();
   }
 
   async findById(id: string): Promise<IPhoto> {
-    return await this.photoModel.findById(id);
+    return await findOrThrow(id, () => this.photoModel.findById(id));
   }
 
   async findAll(): Promise<IPhoto[]> {

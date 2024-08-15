@@ -1,6 +1,6 @@
 import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 import { Types } from 'mongoose';
-import { ToObjectId } from '@app/util/dto';
+import { ToObjectId } from '@app/util';
 
 export class CreateBrandDto {
   @IsNotEmpty()

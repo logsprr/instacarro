@@ -5,6 +5,7 @@ import { User } from '@app/schemas';
 import { IUser } from '@app/interfaces';
 import { userCollectionName } from '@app/modules/schemas';
 import { CryptoService } from '@app/modules/crypto';
+import { findOrThrow } from '@app/util';
 
 @Injectable()
 export class UsersService {
@@ -20,15 +21,23 @@ export class UsersService {
   }
 
   async update(id: string, values: Partial<IUser>): Promise<IUser> {
-    return await this.userModel.findByIdAndUpdate(id, values, { new: true });
+    const user = await findOrThrow(id, () => this.userModel.findById(id));
+
+    if (values.password) {
+      values.password = this.cryptoService.encrypt(values.password);
+    }
+
+    Object.assign(user, values);
+
+    return await user.save();
   }
 
   async findById(id: string): Promise<IUser> {
-    return await this.userModel.findById(id);
+    return await findOrThrow(id, () => this.userModel.findById(id));
   }
 
   async findByEmail(email: string): Promise<IUser> {
-    return await this.userModel.findOne({ email }).select('password');
+    return await findOrThrow(email, () => this.userModel.findOne({ email }).select('password'));
   }
 
   async findAll(): Promise<IUser[]> {

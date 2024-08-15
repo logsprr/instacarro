@@ -4,6 +4,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Car } from '@app/schemas';
 import { ICar } from '@app/interfaces';
 import { carCollectionName } from '@app/modules/schemas';
+import { findOrThrow } from '@app/util';
 
 @Injectable()
 export class CarsService {
@@ -14,18 +15,18 @@ export class CarsService {
   }
 
   async update(id: string, values: Partial<ICar>): Promise<ICar> {
-    return await this.carModel.findByIdAndUpdate(id, values, { new: true });
+    const car = await findOrThrow(id, () => this.carModel.findById(id));
+
+    Object.assign(car, values);
+
+    return await car.save();
   }
 
   async findById(id: string): Promise<ICar> {
-    return await this.carModel.findById(id);
+    return await findOrThrow(id, () => this.carModel.findById(id));
   }
 
   async findAll(): Promise<ICar[]> {
     return await this.carModel.find();
-  }
-
-  async findBidsById(id: string): Promise<ICar> {
-    return await this.carModel.findById(id).populate(['photo', 'auction', 'bids']);
   }
 }

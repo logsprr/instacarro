@@ -1,5 +1,5 @@
-import { ToObjectId } from '@app/util/dto';
-import { IsBoolean, IsDate, IsNotEmpty, IsNumber } from 'class-validator';
+import { ToObjectId } from '@app/util';
+import { IsBoolean, IsDate, IsNotEmpty, IsNumber, IsOptional } from 'class-validator';
 import { Types } from 'mongoose';
 
 export class CreateAuctionDto {
@@ -11,7 +11,7 @@ export class CreateAuctionDto {
   @IsDate()
   startDate: Date;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsDate()
   endDate: Date;
 
