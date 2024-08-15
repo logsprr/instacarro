@@ -18,10 +18,10 @@ export class CarsService {
   }
 
   async findById(id: string): Promise<ICar> {
-    return await this.carModel.findById(id).exec();
+    return await this.carModel.findById(id);
   }
 
   async findAll(): Promise<ICar[]> {
-    return await this.carModel.find().exec();
+    return await this.carModel.find();
   }
 }

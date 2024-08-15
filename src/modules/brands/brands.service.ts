@@ -18,10 +18,10 @@ export class BrandsService {
   }
 
   async findById(id: string): Promise<IBrand> {
-    return await this.brandModel.findById(id).exec();
+    return await this.brandModel.findById(id);
   }
 
   async findAll(): Promise<IBrand[]> {
-    return await this.brandModel.find().exec();
+    return await this.brandModel.find();
   }
 }

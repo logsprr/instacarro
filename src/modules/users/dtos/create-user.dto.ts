@@ -5,6 +5,9 @@ export class CreateUserDto {
   name: string;
 
   @IsString()
+  password: string;
+
+  @IsString()
   @MaxLength(11)
   @MinLength(11)
   cpf: string;

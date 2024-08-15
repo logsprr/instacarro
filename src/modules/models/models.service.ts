@@ -18,10 +18,10 @@ export class ModelsService {
   }
 
   async findById(id: string): Promise<IModel> {
-    return await this.modelModel.findById(id).exec();
+    return await this.modelModel.findById(id);
   }
 
   async findAll(): Promise<IModel[]> {
-    return await this.modelModel.find().exec();
+    return await this.modelModel.find();
   }
 }

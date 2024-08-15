@@ -14,10 +14,10 @@ export class BidsService {
   }
 
   async findById(id: string): Promise<IBid> {
-    return await this.bidModel.findById(id).exec();
+    return await this.bidModel.findById(id);
   }
 
   async findAll(): Promise<IBid[]> {
-    return await this.bidModel.find().exec();
+    return await this.bidModel.find();
   }
 }

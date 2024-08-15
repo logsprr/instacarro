@@ -1,11 +1,13 @@
-import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post, UseGuards } from '@nestjs/common';
 import { AuctionsService } from './auctions.service';
 import { CreateAuctionDto, UpdateAuctionDto } from './dtos';
 import { IAuction } from '@app/interfaces';
 import { ApiTags } from '@nestjs/swagger';
+import { AuthGuard } from '@nestjs/passport';
 
 @ApiTags('auctions')
 @Controller('auctions')
+@UseGuards(AuthGuard())
 export class AuctionsController {
   constructor(private readonly auctionsService: AuctionsService) {}
 

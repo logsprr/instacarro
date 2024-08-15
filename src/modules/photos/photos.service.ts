@@ -18,10 +18,10 @@ export class PhotosService {
   }
 
   async findById(id: string): Promise<IPhoto> {
-    return await this.photoModel.findById(id).exec();
+    return await this.photoModel.findById(id);
   }
 
   async findAll(): Promise<IPhoto[]> {
-    return await this.photoModel.find().exec();
+    return await this.photoModel.find();
   }
 }

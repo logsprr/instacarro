@@ -1,11 +1,13 @@
-import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post, UseGuards } from '@nestjs/common';
 import { BrandsService } from './brands.service';
 import { CreateBrandDto, UpdateBrandDto } from './dtos';
 import { IBrand } from '@app/interfaces';
 import { ApiTags } from '@nestjs/swagger';
+import { AuthGuard } from '@nestjs/passport';
 
 @ApiTags('brands')
 @Controller('brands')
+@UseGuards(AuthGuard())
 export class BrandsController {
   constructor(private readonly brandsService: BrandsService) {}
 

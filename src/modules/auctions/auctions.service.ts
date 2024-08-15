@@ -18,10 +18,10 @@ export class AuctionsService {
   }
 
   async findById(id: string): Promise<IAuction> {
-    return await this.auctionModel.findById(id).exec();
+    return await this.auctionModel.findById(id);
   }
 
   async findAll(): Promise<IAuction[]> {
-    return await this.auctionModel.find().exec();
+    return await this.auctionModel.find();
   }
 }

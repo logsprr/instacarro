@@ -1,11 +1,13 @@
-import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post, UseGuards } from '@nestjs/common';
 import { ModelsService } from './models.service';
 import { CreateModelDto, UpdateModelDto } from './dtos';
 import { IModel } from '@app/interfaces';
 import { ApiTags } from '@nestjs/swagger';
+import { AuthGuard } from '@nestjs/passport';
 
 @ApiTags('models')
 @Controller('models')
+@UseGuards(AuthGuard())
 export class ModelsController {
   constructor(private readonly modelsService: ModelsService) {}
 
