@@ -1,13 +1,22 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument, Types } from 'mongoose';
-import { Photo, PhotoSchema } from './photo';
-import { Bid, BidSchema } from './bid';
-import { Auction, AuctionSchema } from './auction';
-import { carCollectionName, modelCollectionName, userCollectionName } from '@app/modules/schemas';
+import {
+  auctionCollectionName,
+  bidCollectionName,
+  carCollectionName,
+  modelCollectionName,
+  photoCollectionName,
+  userCollectionName,
+} from '@app/modules/schemas';
+import { IBid } from '@app/interfaces';
+import { ObjectId } from 'mongodb';
 
 export type CarDocument = HydratedDocument<Car>;
 
-@Schema({ collection: carCollectionName })
+@Schema({
+  collection: carCollectionName,
+  toJSON: { virtuals: true, getters: true },
+})
 export class Car {
   @Prop({ required: true })
   color: string;
@@ -25,19 +34,32 @@ export class Car {
   details?: string;
 
   @Prop({ type: Types.ObjectId, ref: modelCollectionName, required: true })
-  model: Types.ObjectId;
+  model: ObjectId;
 
   @Prop({ type: Types.ObjectId, ref: userCollectionName, required: true })
-  user: Types.ObjectId;
+  user: ObjectId;
 
-  @Prop({ type: PhotoSchema })
-  photo?: Photo;
-
-  @Prop({ type: AuctionSchema })
-  auction?: Auction;
-
-  @Prop({ type: [BidSchema] })
-  bids?: Bid[];
+  bids?: IBid[];
 }
 
-export const CarSchema = SchemaFactory.createForClass(Car);
+const CarSchema = SchemaFactory.createForClass(Car);
+
+CarSchema.virtual('photo', {
+  localField: '_id',
+  foreignField: 'car',
+  ref: photoCollectionName,
+});
+
+CarSchema.virtual('auction', {
+  localField: '_id',
+  foreignField: 'car',
+  ref: auctionCollectionName,
+});
+
+CarSchema.virtual('bids', {
+  localField: '_id',
+  foreignField: 'car',
+  ref: bidCollectionName,
+});
+
+export { CarSchema };

@@ -1,4 +1,5 @@
-import { IsBoolean, IsDate, IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { ToObjectId } from '@app/util/dto';
+import { IsBoolean, IsDate, IsNotEmpty, IsNumber } from 'class-validator';
 import { Types } from 'mongoose';
 
 export class CreateAuctionDto {
@@ -23,10 +24,10 @@ export class CreateAuctionDto {
   open: boolean;
 
   @IsNotEmpty()
-  @IsString()
-  user: Types.ObjectId;
+  @ToObjectId()
+  car: Types.ObjectId;
 
   @IsNotEmpty()
-  @IsString()
-  car: Types.ObjectId;
+  @ToObjectId()
+  user: Types.ObjectId;
 }

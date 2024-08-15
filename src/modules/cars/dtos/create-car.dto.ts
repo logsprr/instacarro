@@ -1,3 +1,4 @@
+import { ToObjectId } from '@app/util/dto';
 import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
 
 import { Types } from 'mongoose';
@@ -24,10 +25,10 @@ export class CreateCarDto {
   details?: string;
 
   @IsNotEmpty()
-  @IsString()
+  @ToObjectId()
   model: Types.ObjectId;
 
   @IsNotEmpty()
-  @IsString()
+  @ToObjectId()
   user: Types.ObjectId;
 }

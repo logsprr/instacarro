@@ -1,12 +1,8 @@
-import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 import { Types } from 'mongoose';
+import { ToObjectId } from '@app/util/dto';
 
 export class CreateBrandDto {
-  @ApiProperty({
-    description: 'The name of the brand',
-    example: 'Nike',
-  })
   @IsNotEmpty()
   @IsString()
   name: string;
@@ -20,6 +16,6 @@ export class CreateBrandDto {
   description?: string;
 
   @IsNotEmpty()
-  @IsString()
+  @ToObjectId()
   user: Types.ObjectId;
 }

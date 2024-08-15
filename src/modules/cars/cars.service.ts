@@ -24,4 +24,8 @@ export class CarsService {
   async findAll(): Promise<ICar[]> {
     return await this.carModel.find();
   }
+
+  async findBidsById(id: string): Promise<ICar> {
+    return await this.carModel.findById(id).populate(['photo', 'auction', 'bids']);
+  }
 }

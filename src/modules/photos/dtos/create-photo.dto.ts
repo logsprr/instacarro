@@ -1,4 +1,5 @@
-import { IsArray, IsNotEmpty, IsString } from 'class-validator';
+import { ToObjectId } from '@app/util/dto';
+import { IsArray, IsNotEmpty } from 'class-validator';
 import { Types } from 'mongoose';
 
 export class CreatePhotoDto {
@@ -15,10 +16,10 @@ export class CreatePhotoDto {
   details: string[];
 
   @IsNotEmpty()
-  @IsString()
+  @ToObjectId()
   user: Types.ObjectId;
 
   @IsNotEmpty()
-  @IsString()
+  @ToObjectId()
   car: Types.ObjectId;
 }

@@ -1,3 +1,4 @@
+import { ToObjectId } from '@app/util/dto';
 import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import { Types } from 'mongoose';
 
@@ -23,10 +24,10 @@ export class CreateModelDto {
   transmission: string;
 
   @IsNotEmpty()
-  @IsString()
+  @ToObjectId()
   brand: Types.ObjectId;
 
   @IsNotEmpty()
-  @IsString()
+  @ToObjectId()
   user: Types.ObjectId;
 }

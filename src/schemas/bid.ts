@@ -4,7 +4,11 @@ import { HydratedDocument, Types } from 'mongoose';
 
 export type BidDocument = HydratedDocument<Bid>;
 
-@Schema({ collection: bidCollectionName })
+@Schema({
+  collection: bidCollectionName,
+  toJSON: { getters: true, virtuals: true },
+  toObject: { virtuals: true },
+})
 export class Bid {
   @Prop({ required: true })
   amount: number;

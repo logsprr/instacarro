@@ -1,3 +1,4 @@
+import { ToObjectId } from '@app/util/dto';
 import { IsNumber, IsOptional, IsString } from 'class-validator';
 
 import { Types } from 'mongoose';
@@ -24,6 +25,6 @@ export class UpdateCarDto {
   details?: string;
 
   @IsOptional()
-  @IsString()
+  @ToObjectId()
   model: Types.ObjectId;
 }

@@ -7,7 +7,6 @@ import { AuthGuard } from '@nestjs/passport';
 
 @ApiTags('users')
 @Controller('users')
-@UseGuards(AuthGuard())
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
@@ -16,16 +15,19 @@ export class UsersController {
     return this.usersService.create(data);
   }
 
+  @UseGuards(AuthGuard())
   @Get()
   async findAll() {
     return this.usersService.findAll();
   }
 
+  @UseGuards(AuthGuard())
   @Get(':id')
   async findOne(@Param('id') id: string) {
     return this.usersService.findById(id);
   }
 
+  @UseGuards(AuthGuard())
   @Patch(':id')
   async update(@Param('id') id: string, @Body() data: UpdateUserDto) {
     return this.usersService.update(id, data);

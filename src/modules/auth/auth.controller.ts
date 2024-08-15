@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Post } from '@nestjs/common';
 
 import { AuthService } from './auth.service';
 import { LoginDto } from './dtos/login.dto';
@@ -9,6 +9,12 @@ export class AuthController {
 
   @Post('login')
   async login(@Body() { email, password }: LoginDto): Promise<string> {
-    return this.authService.login(email, password);
+    const token = await this.authService.login(email, password);
+
+    if (!token) {
+      throw new BadRequestException('No token is generated for the email provided');
+    }
+
+    return token;
   }
 }

@@ -1,3 +1,4 @@
+import { ToObjectId } from '@app/util/dto';
 import { IsOptional, IsNumber, IsString } from 'class-validator';
 import { Types } from 'mongoose';
 
@@ -23,6 +24,6 @@ export class UpdateModelDto {
   transmission: string;
 
   @IsOptional()
-  @IsString()
+  @ToObjectId()
   brand: Types.ObjectId;
 }

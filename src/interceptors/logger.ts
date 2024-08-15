@@ -9,7 +9,6 @@ export class LoggingInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler<any>): Observable<any> {
     const ctx = context.switchToHttp();
     const req = ctx.getRequest<Request>();
-    const res = ctx.getResponse<Response>();
     const { method, url } = req;
     const start = Date.now();
 
@@ -18,9 +17,7 @@ export class LoggingInterceptor implements NestInterceptor {
     return next.handle().pipe(
       tap(() => {
         const duration = Date.now() - start;
-        this.logger.log(
-          `Request finished: ${method} ${url} - Status Code: ${res.status} - Duration: ${duration}ms`,
-        );
+        this.logger.log(`Request finished: ${method} ${url} - Duration: ${duration}ms`);
       }),
 
       catchError(err => {

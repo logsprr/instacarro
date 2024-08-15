@@ -9,7 +9,10 @@ export function setupValidationPipes(app: INestApplication) {
       transformOptions: {
         enableImplicitConversion: true,
       },
-      exceptionFactory: errors => new BadRequestException(errors),
+      exceptionFactory: errors => {
+        console.log(errors);
+        return new BadRequestException(errors);
+      },
     }),
   );
 }

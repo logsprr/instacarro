@@ -32,13 +32,15 @@ import {
         return config;
       },
     }),
-    MongooseModule.forFeature([{ name: auctionCollectionName, schema: AuctionSchema }]),
-    MongooseModule.forFeature([{ name: bidCollectionName, schema: BidSchema }]),
-    MongooseModule.forFeature([{ name: brandCollectionName, schema: BrandSchema }]),
-    MongooseModule.forFeature([{ name: carCollectionName, schema: CarSchema }]),
-    MongooseModule.forFeature([{ name: modelCollectionName, schema: ModelSchema }]),
-    MongooseModule.forFeature([{ name: photoCollectionName, schema: PhotoSchema }]),
-    MongooseModule.forFeature([{ name: userCollectionName, schema: UserSchema }]),
+    MongooseModule.forFeature([
+      { name: auctionCollectionName, schema: AuctionSchema },
+      { name: bidCollectionName, schema: BidSchema },
+      { name: brandCollectionName, schema: BrandSchema },
+      { name: carCollectionName, schema: CarSchema },
+      { name: modelCollectionName, schema: ModelSchema },
+      { name: photoCollectionName, schema: PhotoSchema },
+      { name: userCollectionName, schema: UserSchema },
+    ]),
   ],
   exports: [MongooseModule],
 })

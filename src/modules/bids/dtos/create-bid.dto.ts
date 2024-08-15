@@ -1,4 +1,5 @@
-import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { ToObjectId } from '@app/util/dto';
+import { IsNotEmpty, IsNumber } from 'class-validator';
 import { Types } from 'mongoose';
 
 export class CreateBidDto {
@@ -7,10 +8,10 @@ export class CreateBidDto {
   amount: number;
 
   @IsNotEmpty()
-  @IsString()
+  @ToObjectId()
   user: Types.ObjectId;
 
   @IsNotEmpty()
-  @IsString()
+  @ToObjectId()
   car: Types.ObjectId;
 }
