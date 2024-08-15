@@ -2,7 +2,9 @@ import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { BidsService } from './bids.service';
 import { CreateBidDto } from './dtos';
 import { IBid } from '@app/interfaces';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('bids')
 @Controller('bids')
 export class BidsController {
   constructor(private readonly bidsService: BidsService) {}

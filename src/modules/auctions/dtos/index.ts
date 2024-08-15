@@ -1,2 +1,2 @@
-export * from './create-auction';
-export * from './update-auction';
+export * from './create-auction.dto';
+export * from './update-auction.dto';

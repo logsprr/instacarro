@@ -2,7 +2,9 @@ import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
 import { ModelsService } from './models.service';
 import { CreateModelDto, UpdateModelDto } from './dtos';
 import { IModel } from '@app/interfaces';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('models')
 @Controller('models')
 export class ModelsController {
   constructor(private readonly modelsService: ModelsService) {}

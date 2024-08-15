@@ -2,7 +2,9 @@ import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
 import { AuctionsService } from './auctions.service';
 import { CreateAuctionDto, UpdateAuctionDto } from './dtos';
 import { IAuction } from '@app/interfaces';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('auctions')
 @Controller('auctions')
 export class AuctionsController {
   constructor(private readonly auctionsService: AuctionsService) {}

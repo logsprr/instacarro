@@ -1,2 +1,2 @@
-export * from './create-brand';
-export * from './update-brand';
+export * from './create-brand.dto';
+export * from './update-brand.dto';

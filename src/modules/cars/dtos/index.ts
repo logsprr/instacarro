@@ -1,2 +1,2 @@
-export * from './create-car';
-export * from './update-car';
+export * from './create-car.dto';
+export * from './update-car.dto';

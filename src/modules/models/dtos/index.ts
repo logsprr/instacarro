@@ -1,2 +1,2 @@
-export * from './create-model';
-export * from './update-model';
+export * from './create-model.dto';
+export * from './update-model.dto';

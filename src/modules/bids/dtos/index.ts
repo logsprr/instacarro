@@ -1,1 +1,1 @@
-export * from './create-bid';
+export * from './create-bid.dto';
