@@ -1,10 +1,9 @@
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 import { ConflictException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Auction } from '@app/schemas';
 import { IAuction } from '@app/interfaces';
 import { auctionCollectionName } from '@app/modules/schemas';
-import { ObjectId } from 'mongodb';
 
 import moment from 'moment';
 import { findOrThrow } from '@app/util';
@@ -58,7 +57,7 @@ export class AuctionsService {
   async findAuctionByCarId(carId: string): Promise<IAuction[]> {
     return await findOrThrow(carId, () =>
       this.auctionModel
-        .find({ car: new ObjectId(carId) })
+        .find({ car: new Types.ObjectId(carId) })
         .populate(['bidWinner', 'bids', 'car', 'user']),
     );
   }

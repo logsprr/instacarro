@@ -12,6 +12,8 @@ export type AuctionDocument = HydratedDocument<Auction>;
 
 @Schema({ collection: auctionCollectionName, toJSON: { virtuals: true, getters: true } })
 export class Auction {
+  _id: Types.ObjectId;
+
   @Prop({ required: true })
   minPrice: number;
 

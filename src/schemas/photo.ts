@@ -6,6 +6,8 @@ export type PhotoDocument = HydratedDocument<Photo>;
 
 @Schema({ collection: photoCollectionName })
 export class Photo {
+  _id: Types.ObjectId;
+
   @Prop([String])
   external: string[];
 

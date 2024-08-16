@@ -6,6 +6,8 @@ export type ModelDocument = HydratedDocument<Model>;
 
 @Schema({ collection: modelCollectionName })
 export class Model {
+  _id: Types.ObjectId;
+
   @Prop({ required: true })
   name: string;
 

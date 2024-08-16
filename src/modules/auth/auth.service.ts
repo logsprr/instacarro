@@ -37,10 +37,6 @@ export class AuthService {
   async login(email: string, password: string) {
     const user = await this.usersService.findByEmail(email);
 
-    if (!user) {
-      return null;
-    }
-
     const userPassword = this.cryptoService.decrypt(user.password);
 
     if (userPassword !== password) {

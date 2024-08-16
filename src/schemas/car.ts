@@ -18,6 +18,8 @@ export type CarDocument = HydratedDocument<Car>;
   toJSON: { virtuals: true, getters: true },
 })
 export class Car {
+  _id: Types.ObjectId;
+
   @Prop({ required: true })
   color: string;
 

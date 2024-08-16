@@ -1,12 +1,12 @@
 import { Transform } from 'class-transformer';
-import { ObjectId } from 'mongodb';
+import { Types } from 'mongoose';
 
 const valueToObjectId = (value: any) => {
   if (typeof value !== 'string') {
     return undefined;
   }
 
-  return new ObjectId(value);
+  return new Types.ObjectId(value);
 };
 
 export const ToObjectId = () => {

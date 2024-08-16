@@ -1,13 +1,10 @@
 import type { Config } from 'jest';
-import { pathsToModuleNameMapper } from 'ts-jest';
-
-import { compilerOptions } from './tsconfig.json';
 
 const config: Config = {
   moduleFileExtensions: ['js', 'json', 'ts'],
-  moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
-    prefix: '<rootDir>',
-  }),
+  moduleNameMapper: {
+    '@app/(.*)$': '<rootDir>/src/$1',
+  },
   rootDir: '.',
   testRegex: '.*\\.spec\\.ts$',
   transform: {
@@ -19,6 +16,12 @@ const config: Config = {
     ],
   },
   coverageDirectory: '../coverage',
+  coveragePathIgnorePatterns: [
+    '/node_modules/',
+    '.*controller.*\\.ts$',
+    '.*dto.*\\.ts$',
+    '.*strategy.*\\.ts$',
+  ],
   testEnvironment: 'node',
 };
 

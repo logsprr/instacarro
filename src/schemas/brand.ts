@@ -1,13 +1,15 @@
 import { brandCollectionName, userCollectionName } from '@app/modules/schemas';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { ObjectId } from 'mongodb';
-import { HydratedDocument } from 'mongoose';
+import { HydratedDocument, Types } from 'mongoose';
 import { User } from './user';
 
 export type BrandDocument = HydratedDocument<Brand>;
 
 @Schema({ collection: brandCollectionName })
 export class Brand {
+  _id: Types.ObjectId;
+
   @Prop({ required: true })
   name: string;
 
