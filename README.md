@@ -106,12 +106,12 @@ This application provides functionalities to start an auction of vehicles. Below
    Request Body:
 
    {
-    "name":"Meteor Classic",
-    "year":"2022",
-    "engineType": "V2",
-    "fuelType": "gas",
-    "transmission": "6V",
-    "brand": "pass the id from brand creation",
+    "color":"Blue",
+    "licensePlate":"KFF-5878",
+    "mileage": 1234,
+    "condition": "Used",
+    "details": "",
+    "model": "pass the id from model creation",
     "user": "pass the id from user creation"
    }
 6. **Auction creation**
