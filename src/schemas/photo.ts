@@ -1,4 +1,8 @@
-import { carCollectionName, photoCollectionName, userCollectionName } from '@app/modules/schemas';
+import {
+  vehicleCollectionName,
+  photoCollectionName,
+  userCollectionName,
+} from '@app/modules/schemas';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument, Types } from 'mongoose';
 
@@ -23,8 +27,8 @@ export class Photo {
   @Prop({ type: Types.ObjectId, ref: userCollectionName, required: true })
   user: Types.ObjectId;
 
-  @Prop({ type: Types.ObjectId, ref: carCollectionName, required: true })
-  car: Types.ObjectId;
+  @Prop({ type: Types.ObjectId, ref: vehicleCollectionName, required: true })
+  vehicle: Types.ObjectId;
 }
 
 export const PhotoSchema = SchemaFactory.createForClass(Photo);

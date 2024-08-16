@@ -25,7 +25,7 @@ export class CreateAuctionDto {
 
   @IsNotEmpty()
   @ToObjectId()
-  car: Types.ObjectId;
+  vehicle: Types.ObjectId;
 
   @IsNotEmpty()
   @ToObjectId()

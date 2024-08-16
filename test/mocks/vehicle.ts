@@ -1,8 +1,8 @@
-import { ICar } from '@app/interfaces';
+import { IVehicle } from '@app/interfaces';
 import { Types } from 'mongoose';
 import { defaultId } from './default';
 
-export const mockCarData: ICar = {
+export const mockVehicleData: IVehicle = {
   color: 'Blue',
   licensePlate: 'KEF-9878',
   mileage: 1658784,

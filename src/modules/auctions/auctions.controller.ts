@@ -21,9 +21,9 @@ export class AuctionsController {
     return this.auctionsService.findAll();
   }
 
-  @Get('by-car/:carId/bids')
-  async findBids(@Param('carId') carId: string) {
-    return this.auctionsService.findAuctionByCarId(carId);
+  @Get('by-vehicle/:vechicleId/bids')
+  async findBids(@Param('vechicleId') vechicleId: string) {
+    return this.auctionsService.findAuctionByVehicleId(vechicleId);
   }
 
   @Get(':id')

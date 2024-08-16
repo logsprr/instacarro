@@ -1,73 +1,154 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# InstaCarro
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Overview
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+This application provides functionalities to start an auction of vehicles. Below is a guide to get you started with the application, including steps for creating users, logging in, and managing various entities.
 
-## Description
+## Getting Started
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+### Prerequisites
 
-## Installation
+- [Node.js (>=20.x)](https://nodejs.org/)
+- [MongoDB (>=7.x)](https://www.mongodb.com/)
+- [NestJS](https://nodejs.org/)
+- [Pnpm (>= 9.7.x)](https://pnpm.io/)
 
-```bash
-$ pnpm install
-```
+### Installation
 
-## Running the app
+1. **Clone the repository**
 
-```bash
-# development
-$ pnpm run start
+   ```bash
+   git clone https://github.com/logsprr/instacarro.git
+   cd instacarro
 
-# watch mode
-$ pnpm run start:dev
+### Running
 
-# production mode
-$ pnpm run start:prod
-```
+1. **Install dependencies**
+   ```bash
+   pnpm install
+2. **Do first build**
+   ```bash
+   pnpm run build
+3. **Check metadata file** (if not generates run the command)
+   ```bash
+   pnpm run prebuild
+4. **Create your .env file**
+   ```bash
+   MONGO_DB_URI=
+   MONGO_DB_NAME=
+   AUTH_SECRET_KEY=
+   PORT=
+5. **Run application**
+   ```bash
+   pnpm run start:dev
 
-## Test
+### Docs   
 
-```bash
-# unit tests
-$ pnpm run test
+1. **To access swagger** (replace 3000 to your predefined port on .env)
+   ```bash
+   go to http://localhost:3000/api/docs
 
-# e2e tests
-$ pnpm run test:e2e
+### Using   
 
-# test coverage
-$ pnpm run test:cov
-```
+1. **User creation**
+   ```bash
+   POST /api/users (no-auth)
 
-## Support
+   Request Body:
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+   {
+    "name": "exampleUser",
+    "password": "examplePassword",
+    "email": "user@example.com",
+    "cpf": "42285188005"
+   }
+2. **User login**
+   ```bash
+   POST /api/auth/login (no-auth)
 
-## Stay in touch
+   Request Body:
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+   {
+    "password": "examplePassword",
+    "email": "user@example.com",
+   }
+3. **Brand creation**
+   ```bash
+   POST /api/brands (auth-required (Use token from login on authorization headers))
 
-## License
+   Request Body:
 
-Nest is [MIT licensed](LICENSE).
+   {
+    "name":"Royal Enfield",
+    "country":"Brazil",
+    "description": "A good brand",
+    "user": "pass the id from user creation"
+   }
+4. **Model creation**
+   ```bash
+   POST /api/models (auth-required (Use token from login on authorization headers))
+
+   Request Body:
+
+   {
+    "name":"Meteor Classic",
+    "year":"2022",
+    "engineType": "V2",
+    "fuelType": "gas",
+    "transmission": "6V",
+    "brand": "pass the id from brand creation",
+    "user": "pass the id from user creation"
+   }
+5. **Vehicle creation**
+   ```bash
+   POST /api/vehicles (auth-required (Use token from login on authorization headers))
+
+   Request Body:
+
+   {
+    "name":"Meteor Classic",
+    "year":"2022",
+    "engineType": "V2",
+    "fuelType": "gas",
+    "transmission": "6V",
+    "brand": "pass the id from brand creation",
+    "user": "pass the id from user creation"
+   }
+6. **Auction creation**
+   ```bash
+   POST /api/auctions (auth-required (Use token from login on authorization headers))
+
+   Request Body:
+
+   {
+    "minPrice":"1500",
+    "startDate":"2024-08-15 18:30:00",
+    "endDate": "2024-08-15 19:30:00",
+    "lot": "1641131321",
+    "open": true,
+    "vehicle": "pass the id from vehicle creation",
+    "user": "pass the id from user creation"
+   }
+7. **Bid creation**
+   ```bash
+   POST /api/bids (auth-required (Use token from login on authorization headers))
+
+   Request Body:
+
+   {
+    "amount":"1600",
+    "auction": "pass the id from auction creation",
+    "user": "pass the id from user creation",
+   }
+8. **List Bids by auction using car id**
+   ```bash
+   GET /api/auctions/by-car/replace with car id from car creation/bids (auth-required (Use token from login on authorization headers))
+9. **Close an auction**
+   ```bash
+   POST /api/auctions/replace with auction id from auction creation (auth-required (Use token from login on authorization headers))
+
+   Request Body:
+
+   {
+    "endDate": "2024-08-15 19:55:00"
+   }

@@ -1,22 +1,22 @@
 import { ToObjectId } from '@app/util';
-import { IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
 
 import { Types } from 'mongoose';
 
-export class UpdateCarDto {
-  @IsOptional()
+export class CreateVehicleDto {
+  @IsNotEmpty()
   @IsString()
   color: string;
 
-  @IsOptional()
+  @IsNotEmpty()
   @IsString()
   licensePlate: string;
 
-  @IsOptional()
+  @IsNotEmpty()
   @IsNumber()
   mileage: number;
 
-  @IsOptional()
+  @IsNotEmpty()
   @IsString()
   condition: string;
 
@@ -24,7 +24,11 @@ export class UpdateCarDto {
   @IsString()
   details?: string;
 
-  @IsOptional()
+  @IsNotEmpty()
   @ToObjectId()
   model: Types.ObjectId;
+
+  @IsNotEmpty()
+  @ToObjectId()
+  user: Types.ObjectId;
 }

@@ -2,7 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument, Types } from 'mongoose';
 import {
   auctionCollectionName,
-  carCollectionName,
+  vehicleCollectionName,
   modelCollectionName,
   photoCollectionName,
   userCollectionName,
@@ -11,13 +11,13 @@ import { ObjectId } from 'mongodb';
 import { Photo } from './photo';
 import { Auction } from './auction';
 
-export type CarDocument = HydratedDocument<Car>;
+export type VehicleDocument = HydratedDocument<Vehicle>;
 
 @Schema({
-  collection: carCollectionName,
+  collection: vehicleCollectionName,
   toJSON: { virtuals: true, getters: true },
 })
-export class Car {
+export class Vehicle {
   _id: Types.ObjectId;
 
   @Prop({ required: true })
@@ -46,18 +46,18 @@ export class Car {
   auctions?: Auction[];
 }
 
-const CarSchema = SchemaFactory.createForClass(Car);
+const VehicleSchema = SchemaFactory.createForClass(Vehicle);
 
-CarSchema.virtual('photo', {
+VehicleSchema.virtual('photo', {
   localField: '_id',
-  foreignField: 'car',
+  foreignField: 'vehicle',
   ref: photoCollectionName,
 });
 
-CarSchema.virtual('auctions', {
+VehicleSchema.virtual('auctions', {
   localField: '_id',
-  foreignField: 'car',
+  foreignField: 'vehicle',
   ref: auctionCollectionName,
 });
 
-export { CarSchema };
+export { VehicleSchema };

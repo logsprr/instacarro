@@ -54,11 +54,11 @@ export class AuctionsService {
     return await this.auctionModel.find();
   }
 
-  async findAuctionByCarId(carId: string): Promise<IAuction[]> {
-    return await findOrThrow(carId, () =>
+  async findAuctionByVehicleId(vehicleId: string): Promise<IAuction[]> {
+    return await findOrThrow(vehicleId, () =>
       this.auctionModel
-        .find({ car: new Types.ObjectId(carId) })
-        .populate(['bidWinner', 'bids', 'car', 'user']),
+        .find({ vehicle: new Types.ObjectId(vehicleId) })
+        .populate(['bidWinner', 'bids', 'vehicle', 'user']),
     );
   }
 }

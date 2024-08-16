@@ -1,6 +1,6 @@
 import { Types } from 'mongoose';
 import { IUser } from './user';
-import { ICar } from './car';
+import { IVehicle } from './vehicle';
 
 export interface IPhoto {
   external: string[];
@@ -8,5 +8,5 @@ export interface IPhoto {
   engine: string[];
   details: string[];
   user: Types.ObjectId | IUser;
-  car: Types.ObjectId | ICar;
+  vehicle: Types.ObjectId | IVehicle;
 }

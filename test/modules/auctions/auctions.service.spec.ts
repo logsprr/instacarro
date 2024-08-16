@@ -124,13 +124,13 @@ describe('AuctionsService', () => {
     });
   });
 
-  describe('findAuctionByCarId', () => {
-    it('should find auctions by carId', async () => {
+  describe('findAuctionByVehicleId', () => {
+    it('should find auctions by vechicleId', async () => {
       const auctions = [
         {
           ...auction,
           _id: new Types.ObjectId(defaultId),
-          car: new Types.ObjectId(defaultId),
+          vehicle: new Types.ObjectId(defaultId),
         },
       ];
 
@@ -138,7 +138,7 @@ describe('AuctionsService', () => {
         populate: jest.fn().mockResolvedValue(auctions),
       } as any);
 
-      const result = await service.findAuctionByCarId(defaultId);
+      const result = await service.findAuctionByVehicleId(defaultId);
       expect(result).toEqual(auctions);
     });
   });

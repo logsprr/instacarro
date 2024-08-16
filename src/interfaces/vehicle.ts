@@ -4,7 +4,7 @@ import { IUser } from './user';
 import { IPhoto } from './photo';
 import { IAuction } from './auction';
 
-export interface ICar {
+export interface IVehicle {
   color: string;
   licensePlate: string;
   mileage: number;

@@ -21,5 +21,5 @@ export class CreatePhotoDto {
 
   @IsNotEmpty()
   @ToObjectId()
-  car: Types.ObjectId;
+  vehicle: Types.ObjectId;
 }

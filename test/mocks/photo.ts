@@ -12,5 +12,5 @@ export const mockPhotoData: IPhoto = {
   ],
   details: [],
   user: new Types.ObjectId(defaultId),
-  car: new Types.ObjectId(defaultId),
+  vehicle: new Types.ObjectId(defaultId),
 };

@@ -3,7 +3,7 @@ import { HydratedDocument, Types } from 'mongoose';
 import {
   auctionCollectionName,
   bidCollectionName,
-  carCollectionName,
+  vehicleCollectionName,
   userCollectionName,
 } from '@app/modules/schemas';
 import { Bid } from './bid';
@@ -32,8 +32,8 @@ export class Auction {
   @Prop({ type: Types.ObjectId, ref: userCollectionName, required: true })
   user: Types.ObjectId;
 
-  @Prop({ type: Types.ObjectId, ref: carCollectionName, required: true })
-  car: Types.ObjectId;
+  @Prop({ type: Types.ObjectId, ref: vehicleCollectionName, required: true })
+  vehicle: Types.ObjectId;
 
   @Prop({ type: Types.ObjectId, ref: bidCollectionName })
   bidWinner?: Types.ObjectId;

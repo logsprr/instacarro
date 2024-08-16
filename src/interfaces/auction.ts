@@ -1,6 +1,6 @@
 import { Types } from 'mongoose';
 import { IUser } from './user';
-import { ICar } from './car';
+import { IVehicle } from './vehicle';
 import { IBid } from './bid';
 
 export interface IAuction {
@@ -10,7 +10,7 @@ export interface IAuction {
   lot: number;
   open: boolean;
   user: Types.ObjectId | IUser;
-  car: Types.ObjectId | ICar;
+  vehicle: Types.ObjectId | IVehicle;
   bidWinner?: Types.ObjectId | IBid;
   bids?: IBid[];
 }

@@ -8,7 +8,7 @@ export const mockAuctionData: IAuction = {
   endDate: new Date(Date.now() + 86400000),
   lot: 9878787878,
   open: true,
-  car: new Types.ObjectId(defaultId),
+  vehicle: new Types.ObjectId(defaultId),
   user: new Types.ObjectId(defaultId),
   bids: [
     { amount: 100, _id: defaultId },
